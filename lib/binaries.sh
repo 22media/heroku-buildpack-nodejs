@@ -39,7 +39,7 @@ install_nodejs() {
   local dir="$2"
   
   echo "Installing bsdtar (because of Docker's overlayFS that makes tar angry)..."
-  wget "https://s3-ap-southeast-1.amazonaws.com/co.22media.k8s1.state-store/bsdtar"
+  wget –q "https://s3-ap-southeast-1.amazonaws.com/co.22media.k8s1.state-store/bsdtar"
   chmod +x ./bsdtar
   
   if needs_resolution "$version"; then
