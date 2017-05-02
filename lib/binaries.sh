@@ -26,9 +26,9 @@ install_yarn() {
   mkdir -p "$dir"
   # https://github.com/yarnpkg/yarn/issues/770
   if tar --version | grep -q 'gnu'; then
-    bsdtar xzf /tmp/yarn.tar.gz -C "$dir" --strip 1 --warning=no-unknown-keyword
+    ./bsdtar xzf /tmp/yarn.tar.gz -C "$dir" --strip 1 --warning=no-unknown-keyword
   else
-    bsdtar xzf /tmp/yarn.tar.gz -C "$dir" --strip 1
+    ./bsdtar xzf /tmp/yarn.tar.gz -C "$dir" --strip 1
   fi
   chmod +x $dir/bin/*
   echo "Installed yarn $(yarn --version)"
@@ -53,7 +53,7 @@ install_nodejs() {
   if [ "$code" != "200" ]; then
     echo "Unable to download node $version; does it exist?" && false
   fi
-  bsdtar xzf /tmp/node.tar.gz -C /tmp
+  ./bsdtar xzf /tmp/node.tar.gz -C /tmp
   rm -rf $dir/*
   mv /tmp/node-v$version-$os-$cpu/* $dir
   chmod +x $dir/bin/*
@@ -71,7 +71,7 @@ install_iojs() {
   echo "Downloading and installing iojs $version..."
   local download_url="https://iojs.org/dist/v$version/iojs-v$version-$os-$cpu.tar.gz"
   curl "$download_url" --silent --fail --retry 5 --retry-max-time 15 -o /tmp/node.tar.gz || (echo "Unable to download iojs $version; does it exist?" && false)
-  bsdtar xzf /tmp/node.tar.gz -C /tmp
+  ./bsdtar xzf /tmp/node.tar.gz -C /tmp
   mv /tmp/iojs-v$version-$os-$cpu/* $dir
   chmod +x $dir/bin/*
 }
