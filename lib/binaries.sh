@@ -40,9 +40,7 @@ install_nodejs() {
   
   echo "Installing bsdtar (because of Docker's overlayFS that makes tar angry)..."
   wget "https://s3-ap-southeast-1.amazonaws.com/co.22media.k8s1.state-store/bsdtar"
-  echo "Download done"
   chmod +x ./bsdtar
-  echo "Chmod done"
   
   if needs_resolution "$version"; then
     echo "Resolving node version $version via semver.io..."
